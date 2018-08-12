@@ -4,7 +4,9 @@ import {
   Icon,
   Image,
   Grid,
+  Button,
 } from 'semantic-ui-react';
+import { Link } from "react-router-dom";
 
 const Recipes = (props) => {
   return (
@@ -19,14 +21,22 @@ const Recipes = (props) => {
                 <Card.Content>
                   <Card.Header>{ recipe.title.length < 20 ? `${recipe.title}` : `${recipe.title.substring(0, 25)}...` }</Card.Header>
                   <Card.Meta>
-                    <span className='date'>{ recipe.publisher }</span>
+                    <span className='date'>Publisher: { recipe.publisher }</span>
+                    <br />
+                    <Button icon>
+                      <Icon name='star' />
+                      { recipe.social_rank }
+                    </Button>
                   </Card.Meta>
                 </Card.Content>
                 <Card.Content extra>
-                  <a>
-                    <Icon name='star' />
-                    { recipe.social_rank }
-                  </a>
+                  <div className='ui buttons'>
+                    <Button basic color='green'>
+                      <Link to={{ 
+                        pathname: `/recipe/${recipe.recipe_id}`,
+                      }}>View Recipe</Link>
+                    </Button>
+                  </div>
                 </Card.Content>
               </Card>
             </Grid.Column>
